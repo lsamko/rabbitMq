@@ -30,10 +30,20 @@ public class RabbitMQExchangeConfig {
             .internal()
             .build();
     }
+
     @Bean
     Exchange fanoutExchange() {
         return ExchangeBuilder.fanoutExchange("FanoutTestExchange")
             .autoDelete()
+            .durable(false)
+            .internal()
+            .build();
+    }
+
+    @Bean
+    Exchange headersExchange() {
+        return ExchangeBuilder.headersExchange("HeadersTestExchange")
+            .ignoreDeclarationExceptions()
             .durable(false)
             .internal()
             .build();
