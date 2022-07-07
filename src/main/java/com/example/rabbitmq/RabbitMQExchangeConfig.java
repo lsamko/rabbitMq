@@ -13,6 +13,7 @@ public class RabbitMQExchangeConfig {
     Exchange exampleExchange() {
         return new TopicExchange("ExampleExchange");
     }
+
     @Bean
     Exchange example2ndExchange() {
         return ExchangeBuilder.directExchange("Example2ndExchange")
@@ -21,5 +22,20 @@ public class RabbitMQExchangeConfig {
             .build();
     }
 
-
+    @Bean
+    Exchange newExchange() {
+        return ExchangeBuilder.topicExchange("TopicTestExchange")
+            .autoDelete()
+            .durable(true)
+            .internal()
+            .build();
+    }
+    @Bean
+    Exchange fanoutExchange() {
+        return ExchangeBuilder.fanoutExchange("FanoutTestExchange")
+            .autoDelete()
+            .durable(false)
+            .internal()
+            .build();
+    }
 }
